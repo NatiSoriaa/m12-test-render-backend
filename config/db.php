@@ -9,7 +9,7 @@ $pass = getenv('DB_PASSWORD') ?: '';
 
 try {
     $dsn = "mysql:host=$host;port=$port;dbname=$dbname;charset=utf8mb4";
-    $pdo = new PDO($dsn, $user, $pass);
+    $pdo = new PDO("mysql:host=$host;port=$port;dbname=$dbname", $user, $pass);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $pdo->exec("SET NAMES 'utf8mb4'");
 } catch (PDOException $e) {
