@@ -1,8 +1,10 @@
-# Imagen base con Apache y PHP 8.2
 FROM php:8.2-apache
 
-# Instalar extensión para MySQL
-RUN docker-php-ext-install pdo pdo_mysql
+# Actualización e instalación de dependencias del sistema
+RUN apt-get update && \
+    apt-get install -y libpng-dev libjpeg-dev libfreetype6-dev && \
+    docker-php-ext-configure gd --with-freetype --with-jpeg && \
+    docker-php-ext-install pdo pdo_mysql gd
 
 # Copiar todo el proyecto al contenedor
 COPY . /var/www/app/
@@ -18,3 +20,9 @@ RUN chown -R www-data:www-data /var/www/app
 
 # Exponer el puerto HTTP
 EXPOSE 80
+
+# Copiar el archivo de configuración setup_database.php
+COPY setup_database.php /var/www/app/setup_database.php
+
+# Ejecutar el script de configuración de la base de datos cuando el contenedor se inicie
+CMD php /var/www/app/setup_database.php && apache2-foreground

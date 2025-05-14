@@ -1,9 +1,9 @@
 <?php
 // setup_database.php
 
-$host = 'localhost';
+$host = 'mysql';
 $user = 'root';
-$pass = 'root';
+$pass = '';
 $dbname = 'earth_explorer_db';
 
 try {
