@@ -8,7 +8,7 @@ RUN docker-php-ext-install pdo pdo_mysql
 COPY . /var/www/app/
 
 # Cambiar el DocumentRoot para que Apache sirva desde la carpeta 'backend/public'
-RUN sed -i 's!/var/www/html!/var/www/app/backend/public!g' /etc/apache2/sites-available/000-default.conf
+RUN sed -i 's!/var/www/html!/var/www/app/public!g' /etc/apache2/sites-available/000-default.conf
 
 # Habilitar mod_rewrite para .htaccess
 RUN a2enmod rewrite
