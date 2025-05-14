@@ -87,7 +87,7 @@ switch ($action) {
         $favoritosController->guardarPuntuacion();
         break;
     default:  // Acción por defecto, redirige si no se encuentra ninguna acción
-    header('Location: ' . BASE_URL . 'frontend/templates/index.html');
+    header('Location: ' . BASE_URL . 'frontend/index.html');
     exit();  // Evita que se siga ejecutando el código
 }
 ?>
